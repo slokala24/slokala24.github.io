@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     :root {
       --navy: #1b1512;
       --navy-mid: #2c2218;
@@ -32,9 +32,9 @@
       --radius: 14px;
       --radius-sm: 9px;
     }
-
+ 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       font-family: 'Jost', sans-serif;
       background: var(--bg);
@@ -43,7 +43,7 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
-
+ 
     /* NAV */
     nav {
       position: sticky; top: 0; z-index: 100;
@@ -78,7 +78,7 @@
       display: block; width: 22px; height: 1.5px;
       background: var(--navy); margin: 5px 0; transition: all 0.3s;
     }
-
+ 
     /* HERO */
     .hero {
       min-height: 88vh;
@@ -120,7 +120,7 @@
       text-decoration: none; transition: border-color 0.2s, background 0.2s;
     }
     .btn-outline:hover { background: #fff; border-color: var(--navy); }
-
+ 
     .hero-right {
       display: flex; flex-direction: column; gap: 1rem;
     }
@@ -141,12 +141,12 @@
     }
     .stat-text .stat-num { font-size: 20px; font-weight: 500; color: var(--navy); line-height: 1.2; }
     .stat-text .stat-label { font-size: 12px; color: var(--muted); }
-
+ 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
+ 
     /* SECTIONS */
     .section {
       padding: 5rem 2.5rem;
@@ -175,7 +175,7 @@
       font-size: 15px; color: var(--text-secondary);
       margin-top: 0.6rem; max-width: 520px;
     }
-
+ 
     /* SERVICES */
     .services-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -200,7 +200,7 @@
       margin-bottom: 0.6rem;
     }
     .service-card p { font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
-
+ 
     /* EXPERIENCE */
     .exp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .exp-list { display: flex; flex-direction: column; }
@@ -223,7 +223,7 @@
       background: var(--accent-light); color: var(--accent);
       border-radius: 4px; font-weight: 500;
     }
-
+ 
     .edu-block {
       background: var(--bg); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 1.75rem 1.5rem;
@@ -232,7 +232,7 @@
     .edu-block h4 { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
     .edu-block p { font-size: 13px; color: var(--text-secondary); }
     .edu-block .edu-year { font-size: 11px; color: var(--muted); margin-top: 6px; }
-
+ 
     /* MENTORSHIP */
     .mentorship-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: center; }
     .mentorship-text h2 {
@@ -251,7 +251,7 @@
     .mentorship-card .m-icon { font-size: 22px; margin-bottom: 0.6rem; }
     .mentorship-card h4 { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
     .mentorship-card p { font-size: 12px; color: var(--muted); line-height: 1.6; }
-
+ 
     /* CONTACT */
     .contact-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
     .contact-info h2 {
@@ -269,7 +269,7 @@
     }
     .contact-row-text .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
     .contact-row-text .value { font-size: 13px; color: var(--navy); font-weight: 500; }
-
+ 
     .contact-form { display: flex; flex-direction: column; gap: 14px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .contact-form input,
@@ -296,7 +296,7 @@
     }
     .form-submit:hover { background: var(--navy-mid); }
     .form-note { font-size: 12px; color: var(--muted); }
-
+ 
     /* FOOTER */
     footer {
       background: var(--navy); color: rgba(255,255,255,0.5);
@@ -311,7 +311,7 @@
     footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
     footer a:hover { color: #fff; }
     footer .footer-links { display: flex; gap: 1.5rem; }
-
+ 
     /* MOBILE */
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
@@ -334,7 +334,7 @@
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
     }
-
+ 
     .section-eyebrow::after {
       content: ''; display: inline-block; width: 24px; height: 1px;
       background: var(--accent); margin-left: 10px; vertical-align: middle;
@@ -352,7 +352,7 @@
     .btn-primary:hover { background: var(--accent-dark); }
     .form-submit { background: var(--accent); }
     .form-submit:hover { background: var(--accent-dark); }
-
+ 
     /* BLOG */
     .blog-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -386,7 +386,7 @@
       font-size: 12px; font-weight: 500; color: var(--accent);
       margin-top: 0.5rem;
     }
-
+ 
     /* TESTIMONIALS */
     .testimonials-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -419,15 +419,63 @@
     }
     .testimonial-name { font-size: 14px; font-weight: 500; color: var(--navy); }
     .testimonial-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
-
+ 
     @media (max-width: 768px) {
       .blog-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
     }
+ 
+    /* EXPERIENCE PHOTO SLIDER */
+    .exp-photo-slider {
+      position: relative; border-radius: var(--radius);
+      overflow: hidden; border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(26,20,14,0.08);
+      background: var(--bg-card);
+    }
+    .exp-photo-track {
+      display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .exp-photo-slide { min-width: 100%; position: relative; }
+    .exp-photo-slide img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top;
+      display: block;
+    }
+    .exp-photo-caption {
+      padding: 0.85rem 1rem; font-size: 11.5px; color: var(--text-secondary);
+      line-height: 1.5; background: var(--bg-card);
+      border-top: 1px solid var(--border);
+    }
+    .exp-photo-dots {
+      position: absolute; bottom: 48px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 6px; z-index: 2;
+    }
+    .exp-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.5); cursor: pointer;
+      transition: background 0.2s; border: none;
+    }
+    .exp-dot.active { background: #fff; }
+    .exp-prev, .exp-next {
+      position: absolute; top: 40%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.75); border: none; cursor: pointer;
+      width: 30px; height: 30px; border-radius: 50%; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--navy); transition: background 0.2s; z-index: 2;
+    }
+    .exp-prev { left: 8px; }
+    .exp-next { right: 8px; }
+    .exp-prev:hover, .exp-next:hover { background: rgba(255,255,255,0.95); }
+    @media (max-width: 768px) {
+      #experience .section > div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+      }
+      .exp-photo-slider { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <span class="nav-logo">Sandeep Lokala</span>
@@ -447,7 +495,7 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-
+ 
 <!-- HERO -->
 <div class="hero" id="about">
   <div class="hero-left">
@@ -492,7 +540,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- SERVICES -->
 <div class="section-full" id="services">
   <div class="section-inner">
@@ -525,14 +573,14 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- EXPERIENCE -->
 <div class="section" id="experience">
   <div class="section-header">
     <p class="section-eyebrow">Background</p>
     <h2 class="section-title">Experience & education</h2>
   </div>
-  <div style="max-width:680px;">
+  <div style="display:grid; grid-template-columns:1fr 340px; gap:3rem; align-items:start; max-width:1000px;">
     <div>
       <p style="font-size:15px; line-height:1.85; color:var(--text-secondary);">
         Sandeep brings nearly 13 years of hands-on experience in embedded systems development, having contributed to some of the world's most respected technology companies — Apple, Intel, Qualcomm, Zeku, and Schneider Electric — delivering firmware and hardware solutions across wireless, SoC, and embedded platforms.
@@ -543,7 +591,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- MENTORSHIP -->
 <div class="section-full" id="mentorship">
   <div class="section-inner">
@@ -577,14 +625,14 @@
           <h4>Interview coaching</h4>
           <p>Technical and behavioural interview prep for engineering and product roles.</p>
         </div>
-
-
+ 
+ 
       </div>
     </div>
   </div>
 </div>
-
-
+ 
+ 
 <!-- BLOG -->
 <div class="section-full" id="blog">
   <div class="section-inner">
@@ -624,7 +672,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- TESTIMONIALS -->
 <div class="section" id="testimonials">
   <div class="section-header">
@@ -649,7 +697,7 @@
     <a href="https://linkedin.com/in/sandeeplokala" target="_blank" rel="noopener" class="btn-outline">View LinkedIn recommendations →</a>
   </div>
 </div>
-
+ 
 <!-- CONTACT -->
 <div class="section" id="contact">
   <div class="contact-layout">
@@ -705,23 +753,23 @@
           Something went wrong. Please email me directly at <a href="mailto:lokalask@gmail.com" style="color:var(--accent);">lokalask@gmail.com</a>
         </div>
       </div>
-
+ 
       <script>
         async function submitContactForm() {
           const name    = document.getElementById('cf-name').value.trim();
           const email   = document.getElementById('cf-email').value.trim();
           const inquiry = document.getElementById('cf-inquiry').value;
           const message = document.getElementById('cf-message').value.trim();
-
+ 
           if (!name || !email || !message) {
             alert('Please fill in your name, email, and message.');
             return;
           }
-
+ 
           const btn = document.querySelector('.form-submit');
           btn.textContent = 'Sending...';
           btn.disabled = true;
-
+ 
           try {
             const res = await fetch('https://api.web3forms.com/submit', {
               method: 'POST',
@@ -733,7 +781,7 @@
                 message
               })
             });
-
+ 
             if (res.ok) {
               document.getElementById('cf-success').style.display = 'block';
               document.getElementById('cf-error').style.display = 'none';
@@ -756,7 +804,7 @@
     </div>
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <span class="footer-logo">Sandeep Lokala</span>
@@ -768,13 +816,30 @@
     <a href="#contact">Contact</a>
   </div>
 </footer>
-
+ 
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('navLinks');
   hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+ 
+  // Experience photo slider — only runs if slider exists on this page
+  const expTrack = document.getElementById('expTrack');
+  if (expTrack) {
+    let currentSlide = 0;
+    const totalSlides = document.querySelectorAll('.exp-photo-slide').length;
+    function goToSlide(n) {
+      currentSlide = n;
+      expTrack.style.transform = `translateX(-${n * 100}%)`;
+      document.querySelectorAll('.exp-dot').forEach((d,i) => d.classList.toggle('active', i===n));
+    }
+    function changeSlide(dir) {
+      goToSlide((currentSlide + dir + totalSlides) % totalSlides);
+    }
+    setInterval(() => changeSlide(1), 4000);
+  }
+ 
 </script>
-
+ 
 </body>
 </html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative — Sandeep Lokala</title>
+  <meta name="description" content="Creative work by Sandeep Lokala — writing, photography, teaching, and ideas at the intersection of technology and humanity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1b1512; --navy-mid: #2c2218;
+      --muted: #a8937a; --bg: #f4ede0; --bg-card: #fdf8f1;
+      --text: #1b1512; --text-secondary: #6b5a45;
+      --border: rgba(26,20,14,0.12);
+      --accent: #b8895a; --accent-dark: #8a6338;
+      --accent-light: #ede0cc; --gold: #c9a55e; --gold-light: #f8f1e4;
+      --radius: 14px; --radius-sm: 9px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(244,237,224,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; display: flex; justify-content: space-between; align-items: center; height: 60px;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-cta { font-size: 13px; font-weight: 500; background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* HERO */
+    .cr-hero { padding: 5rem 2.5rem 3rem; max-width: 860px; margin: 0 auto; border-bottom: 1px solid var(--border); }
+    .cr-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .cr-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+    .cr-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4vw,3.4rem); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+    .cr-hero h1 em { font-style: italic; color: var(--accent); }
+    .cr-hero p { font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 600px; }
+
+    /* SECTION */
+    .cr-section { max-width: 860px; margin: 0 auto; padding: 0 2.5rem 2rem; }
+    .cr-section-header { padding: 2rem 0 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .cr-section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; }
+    .cr-section-header p { font-size: 13px; color: var(--muted); }
+
+    /* MASONRY-ISH GRID */
+    .cr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+
+    .cr-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cr-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(184,137,90,0.1); }
+
+    .cr-thumb {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px; position: relative;
+    }
+    .cr-thumb .placeholder-badge {
+      position: absolute; top: 8px; left: 10px;
+      font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(255,255,255,0.85); color: var(--accent); padding: 2px 7px; border-radius: 4px;
+    }
+
+    .cr-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+    .cr-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .cr-title { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.4; }
+    .cr-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+    .cr-footer { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .cr-meta { font-size: 11px; color: var(--muted); }
+    .cr-status { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 10px; }
+    .status-wip { background: #fef3c7; color: #92400e; }
+    .status-done { background: #d1fae5; color: #065f46; }
+    .status-placeholder { background: var(--accent-light); color: var(--accent-dark); }
+
+    /* FEATURED WIDE CARD */
+    .cr-card-wide {
+      grid-column: span 2;
+      display: grid; grid-template-columns: 1fr 1.2fr;
+    }
+    .cr-card-wide .cr-thumb { aspect-ratio: auto; min-height: 180px; }
+    @media (max-width: 600px) { .cr-card-wide { grid-column: span 1; display: flex; flex-direction: column; } }
+
+    /* QUOTE BLOCK */
+    .cr-quote {
+      max-width: 860px; margin: 0 auto 3rem;
+      padding: 2rem 2.5rem;
+      border-left: 3px solid var(--accent);
+      background: var(--gold-light);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .cr-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--navy); line-height: 1.6; }
+    .cr-quote cite { font-size: 12px; color: var(--muted); margin-top: 0.5rem; display: block; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2.5rem; font-size: 13px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 4rem; }
+    footer .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #fff; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; } .nav-links { display: none; }
+      .cr-hero { padding: 3rem 1.25rem 2rem; }
+      .cr-section { padding: 0 1.25rem 1.5rem; }
+      .cr-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sandeep Lokala</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="creative.html" class="active">Creative</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendar.app.google/5iT7MmXbxGDViba88" target="_blank" class="nav-cta">Book a session</a>
+</nav>
+
+<!-- HERO -->
+<div class="cr-hero">
+  <div class="cr-eyebrow">Creative space</div>
+  <h1>Where engineering meets <em>curiosity</em><br>and ideas take form</h1>
+  <p>Beyond the technical — a collection of writing, visual work, teaching experiments, and explorations at the intersection of technology, education, and human experience. A space to think out loud.</p>
+</div>
+
+<!-- QUOTE -->
+<div class="cr-quote">
+  <p>"The best engineers I've known are also storytellers. They understand that a circuit board and a sentence serve the same purpose — they carry meaning from one mind to another."</p>
+  <cite>— Sandeep Lokala</cite>
+</div>
+
+<!-- ── SECTION 1: WRITING ── -->
+<div class="cr-section">
+  <div class="cr-section-header">
+    <h2>Writing & Essays</h2>
+    <p>Long-form thinking on engineering, education, entrepreneurship, and what it means to build things that last.</p>
+  </div>
+  <div class="cr-grid">
+
+    <div class="cr-card cr-card-wide">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#1b1512,#3d3025); font-size:50px;">✍️
+        <span class="placeholder-badge">Blog</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Featured essay</div>
+        <div class="cr-title">Why Electrical Engineers & Physicists Make the Best Systems Thinkers</div>
+        <div class="cr-desc">How years of working close to the metal builds a unique mental model for solving complex, layered problems — and why that skill transfers far beyond hardware. Published on the blog.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">May 2026 · 5 min read</span>
+          <a href="blog.html#post-1" style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:none;">Read →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#2a1a0a,#c9850e);">📖
+        <span class="placeholder-badge">Blog</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Education · Essay</div>
+        <div class="cr-title">The Art of Explaining Hard Things Simply</div>
+        <div class="cr-desc">After years of teaching engineering globally, here's what I've learned about making the complex feel obvious without losing nuance.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">March 2026 · 4 min read</span>
+          <a href="blog.html#post-3" style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:none;">Read →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#1a2a3a,#1a8fe3);">💼
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Personal essay</div>
+        <div class="cr-title">[Essay on Engineering & Identity]</div>
+        <div class="cr-desc">Placeholder for a personal essay on what it means to be an engineer in 2026 — the identity shifts, the unexpected skills, and the things no one tells you about the career.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">Coming soon</span>
+          <span class="cr-status status-placeholder">Draft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#1a3a1a,#0c9e72);">🌏
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Culture · Reflection</div>
+        <div class="cr-title">[From Hyderabad to Vancouver — A Technical Journey]</div>
+        <div class="cr-desc">Placeholder for a personal reflection on building a technical career across continents — what India, the US, and Canada each taught me about engineering culture, community, and ambition.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">Coming soon</span>
+          <span class="cr-status status-placeholder">Draft</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SECTION 2: TEACHING EXPERIMENTS ── -->
+<div class="cr-section">
+  <div class="cr-section-header">
+    <h2>Teaching Experiments & Curriculum</h2>
+    <p>Creative approaches to making engineering and science accessible — analogies, frameworks, and unexpected entry points.</p>
+  </div>
+  <div class="cr-grid">
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#2a1a3a,#8347d4);">⚛️
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Physics · Curriculum</div>
+        <div class="cr-title">Physics Through Everyday Analogies — Curriculum Framework</div>
+        <div class="cr-desc">A teaching framework developed over years of instruction — using everyday objects and situations to explain electromagnetic fields, wave mechanics, and quantum behaviour to non-specialists.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">Ongoing development</span>
+          <span class="cr-status status-wip">Evolving</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#1a3a3a,#0891b2);">🔌
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Embedded Systems · Explainer</div>
+        <div class="cr-title">Interrupts Explained to a Chef — Technical Explainers Series</div>
+        <div class="cr-desc">A series of explainers translating embedded systems concepts to non-engineers using real-world analogies. The chef and the oven timer. The doorbell and the CPU. Making low-level concepts feel human.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">In progress</span>
+          <span class="cr-status status-wip">Writing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#3a2a1a,#b8895a);">🎯
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Workshop · Design</div>
+        <div class="cr-title">[Technical Communication Workshop]</div>
+        <div class="cr-desc">Placeholder for a workshop curriculum on technical communication — helping engineers present to executives, write clearly for non-technical stakeholders, and tell the story behind the spec sheet.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">In development</span>
+          <span class="cr-status status-placeholder">Planning</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SECTION 3: VISUAL & OTHER ── -->
+<div class="cr-section">
+  <div class="cr-section-header">
+    <h2>Visual & Other Explorations</h2>
+    <p>Photography, design, and other creative work — placeholder space for ideas still forming.</p>
+  </div>
+  <div class="cr-grid">
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#1a1a2a,#2a2a5a);">📸
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Photography</div>
+        <div class="cr-title">[Photography — Vancouver & Beyond]</div>
+        <div class="cr-desc">Placeholder for a photography collection. Vancouver landscapes, travel, and the quiet details of engineering — the beauty of circuits, structures, and systems.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">Coming soon</span>
+          <span class="cr-status status-placeholder">Curating</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#1a3a2a,#2d7a4f);">🌱
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Venture · Storytelling</div>
+        <div class="cr-title">[Entoq — The Story Behind the Startup]</div>
+        <div class="cr-desc">Placeholder for a behind-the-scenes narrative on co-founding Entoq — what drove the idea, what the early days looked like, and what building a cleantech venture from Vancouver actually feels like.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">Coming soon</span>
+          <span class="cr-status status-placeholder">Draft</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cr-card">
+      <div class="cr-thumb" style="background: linear-gradient(135deg,#2a1a1a,#8a3030);">🎙️
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="cr-body">
+        <div class="cr-tag">Podcast / Talk</div>
+        <div class="cr-title">[Talk or Podcast Appearance]</div>
+        <div class="cr-desc">Placeholder for a recorded talk, podcast appearance, or panel discussion. Topics of interest: hardware entrepreneurship, the MBA-engineer career path, and teaching technical concepts to diverse audiences.</div>
+        <div class="cr-footer">
+          <span class="cr-meta">Coming soon</span>
+          <span class="cr-status status-placeholder">Upcoming</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="max-width:860px; margin: 0 auto 4rem; padding: 0 2.5rem;">
+  <div style="background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius); padding:2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--navy); margin-bottom:0.4rem;">Have an idea to collaborate on?</div>
+      <div style="font-size:14px; color:var(--text-secondary);">Writing, teaching, speaking, or building something together — I'm always open to interesting conversations.</div>
+    </div>
+    <a href="index.html#contact" style="font-size:13px; font-weight:500; background:var(--accent); color:#fff; padding:12px 24px; border-radius:6px; text-decoration:none; white-space:nowrap; transition:background 0.2s;" onmouseover="this.style.background='var(--accent-dark)'" onmouseout="this.style.background='var(--accent)'">Get in touch →</a>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">Sandeep Lokala</span>
+  <span>Vancouver, BC · lokalask@gmail.com</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Technical portfolio</a>
+    <a href="blog.html">Blog</a>
+    <a href="https://linkedin.com/in/sandeeplokala" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+</body>
+</html>

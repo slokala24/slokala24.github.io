@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Sandeep Lokala</title>
+  <meta name="description" content="Technical portfolio of Sandeep Lokala — hardware, firmware, embedded systems, and consulting projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1b1512; --navy-mid: #2c2218;
+      --muted: #a8937a; --bg: #f4ede0; --bg-card: #fdf8f1;
+      --text: #1b1512; --text-secondary: #6b5a45;
+      --border: rgba(26,20,14,0.12);
+      --accent: #b8895a; --accent-dark: #8a6338;
+      --accent-light: #ede0cc; --gold: #c9a55e; --gold-light: #f8f1e4;
+      --radius: 14px; --radius-sm: 9px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(244,237,224,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; display: flex; justify-content: space-between; align-items: center; height: 60px;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-cta { font-size: 13px; font-weight: 500; background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* HERO */
+    .port-hero {
+      padding: 5rem 2.5rem 3rem; max-width: 860px; margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .port-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .port-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+    .port-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4vw,3.4rem); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+    .port-hero h1 em { font-style: italic; color: var(--accent); }
+    .port-hero p { font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 600px; }
+
+    /* FILTER */
+    .filter-bar { padding: 1.5rem 2.5rem; max-width: 860px; margin: 0 auto; display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn { font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; padding: 6px 16px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* SECTION */
+    .port-section { max-width: 860px; margin: 0 auto; padding: 0 2.5rem 2rem; }
+    .port-section-header { padding: 2rem 0 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 1rem; }
+    .port-section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--navy); }
+    .port-section-header span { font-size: 12px; color: var(--muted); }
+
+    /* PROJECT GRID */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+
+    .project-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden; cursor: pointer;
+      text-decoration: none; color: inherit;
+    }
+    .project-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(184,137,90,0.12); }
+
+    .project-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; position: relative; overflow: hidden;
+    }
+    .project-thumb .thumb-label {
+      position: absolute; bottom: 8px; right: 10px;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(0,0,0,0.35); color: #fff; padding: 3px 8px; border-radius: 4px;
+    }
+    .placeholder-badge {
+      position: absolute; top: 8px; left: 10px;
+      font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      background: rgba(255,255,255,0.85); color: var(--accent); padding: 2px 7px; border-radius: 4px;
+    }
+
+    .project-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+    .project-tag { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .project-title { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 0.5rem; line-height: 1.4; }
+    .project-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+    .project-footer { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .project-company { font-size: 11px; color: var(--muted); }
+    .project-status { font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 10px; }
+    .status-wip { background: #fef3c7; color: #92400e; }
+    .status-done { background: #d1fae5; color: #065f46; }
+    .status-placeholder { background: var(--accent-light); color: var(--accent-dark); }
+
+    /* STAT ROW */
+    .stat-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .stat-pill { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.75rem 1.25rem; }
+    .stat-pill .sp-val { font-size: 18px; font-weight: 500; color: var(--navy); }
+    .stat-pill .sp-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2.5rem; font-size: 13px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 4rem; }
+    footer .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #fff; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; } .nav-links { display: none; }
+      .port-hero { padding: 3rem 1.25rem 2rem; }
+      .port-section { padding: 0 1.25rem 1.5rem; }
+      .filter-bar { padding: 1.25rem; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Sandeep Lokala</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#mentorship">Mentorship</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="creative.html">Creative</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://calendar.app.google/5iT7MmXbxGDViba88" target="_blank" class="nav-cta">Book a session</a>
+</nav>
+
+<!-- HERO -->
+<div class="port-hero">
+  <div class="port-eyebrow">Technical portfolio</div>
+  <h1>Engineering work that <em>bridges</em><br>hardware, systems & strategy</h1>
+  <p>A collection of technical projects spanning nearly 13 years of embedded systems engineering, startup consulting, venture analysis, and applied research. Diverse in domain — unified by depth of execution.</p>
+</div>
+
+<!-- STATS -->
+<div class="port-section" style="padding-top:2rem;">
+  <div class="stat-row">
+    <div class="stat-pill"><div class="sp-val">13+</div><div class="sp-lbl">Years of engineering</div></div>
+    <div class="stat-pill"><div class="sp-val">5</div><div class="sp-lbl">Global companies</div></div>
+    <div class="stat-pill"><div class="sp-val">3</div><div class="sp-lbl">Startups advised</div></div>
+    <div class="stat-pill"><div class="sp-val">20+</div><div class="sp-lbl">Ventures evaluated at CDL</div></div>
+  </div>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all',this)">All</button>
+  <button class="filter-btn" onclick="filterCards('firmware',this)">Firmware & Embedded</button>
+  <button class="filter-btn" onclick="filterCards('wireless',this)">Wireless & RF</button>
+  <button class="filter-btn" onclick="filterCards('consulting',this)">Consulting</button>
+  <button class="filter-btn" onclick="filterCards('venture',this)">Venture & Strategy</button>
+  <button class="filter-btn" onclick="filterCards('education',this)">Education</button>
+</div>
+
+<!-- ── SECTION 1: FIRMWARE & EMBEDDED SYSTEMS ── -->
+<div class="port-section">
+  <div class="port-section-header">
+    <h2>Firmware & Embedded Systems</h2>
+    <span>Hardware-close engineering across Apple, Intel, Qualcomm, Zeku, Schneider Electric</span>
+  </div>
+  <div class="project-grid">
+
+    <div class="project-card" data-cat="firmware">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1b2838,#2a4a6b);">
+        <span>📡</span>
+        <span class="thumb-label">Apple</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Wireless Firmware</div>
+        <div class="project-title">Wi-Fi & Bluetooth Chipset Firmware — Consumer Products</div>
+        <div class="project-desc">Developed and optimised firmware for wireless chipsets embedded in Apple consumer products. Collaborated across hardware, RF, and systems teams to validate real-time performance and power constraints.</div>
+        <div class="project-footer">
+          <span class="project-company">Apple Inc. · California</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="firmware wireless">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a3a5c,#0d5c8a);">
+        <span>🔧</span>
+        <span class="thumb-label">Zeku</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">5G SoC Architecture</div>
+        <div class="project-title">5G NR Modem Firmware & Systems Architecture</div>
+        <div class="project-desc">Led firmware architecture decisions for a 5G NR SoC, coordinating technical communication across global stakeholders. Presented complex architectural tradeoffs to both engineering and business leadership.</div>
+        <div class="project-footer">
+          <span class="project-company">Zeku · San Diego</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="firmware wireless">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1e3c5e,#3a7bd5);">
+        <span>📶</span>
+        <span class="thumb-label">Intel</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">LTE / Embedded Systems</div>
+        <div class="project-title">LTE Modem Firmware — Embedded Systems Development</div>
+        <div class="project-desc">Developed firmware for LTE modem platforms at Intel. Led internal knowledge-sharing and mentored junior engineers on embedded systems fundamentals and real-time software design patterns.</div>
+        <div class="project-footer">
+          <span class="project-company">Intel Corporation · San Diego</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="firmware wireless">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#2d1b4e,#6a3d9a);">
+        <span>⚡</span>
+        <span class="thumb-label">Qualcomm</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Firmware · Systems Verification</div>
+        <div class="project-title">CDMA / LTE Firmware & Systems Verification</div>
+        <div class="project-desc">Worked across firmware engineering and systems verification for CDMA and LTE chipsets. Collaborated with KDDI Labs in Japan on international client-facing technical work, managing cross-cultural engineering partnerships.</div>
+        <div class="project-footer">
+          <span class="project-company">Qualcomm · San Diego</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="firmware">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a3a2a,#2d7a4f);">
+        <span>🏭</span>
+        <span class="thumb-label">Schneider Electric</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Industrial Embedded Systems</div>
+        <div class="project-title">Industrial Control Systems — Embedded Firmware</div>
+        <div class="project-desc">Embedded firmware development for industrial control and energy management systems. Applied real-time embedded principles to mission-critical industrial applications with stringent reliability requirements.</div>
+        <div class="project-footer">
+          <span class="project-company">Schneider Electric</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SECTION 2: CONSULTING & STRATEGY ── -->
+<div class="port-section">
+  <div class="port-section-header">
+    <h2>Engineering & Management Consulting</h2>
+    <span>Technical strategy for early-stage companies</span>
+  </div>
+  <div class="project-grid">
+
+    <div class="project-card" data-cat="consulting">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a2a1a,#2d5a2d);">
+        <span>🌿</span>
+        <span class="thumb-label">Entoq</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Management Consulting · CleanTech</div>
+        <div class="project-title">Business Strategy & GTM for a CleanTech Startup</div>
+        <div class="project-desc">Co-founder role providing management consulting to Entoq, a cleantech venture. Built end-to-end product narrative, investor pitch materials, and technical-to-business translation frameworks. Led customer discovery sessions mapping business needs to technical solutions.</div>
+        <div class="project-footer">
+          <span class="project-company">Entoq · Vancouver</span>
+          <span class="project-status status-wip">In progress</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="consulting">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a1a3a,#3a3a8a);">
+        <span>🏥</span>
+        <span class="thumb-label">VRNDA Labs</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Technical Advisory · MedTech</div>
+        <div class="project-title">Technical Advisor — MedTech Startup</div>
+        <div class="project-desc">Serving as Technical Advisor to VRNDA Labs, a MedTech startup. Providing technical guidance on systems architecture, hardware roadmap, and translating engineering capabilities into investor-ready narratives.</div>
+        <div class="project-footer">
+          <span class="project-company">VRNDA Labs · 2026–present</span>
+          <span class="project-status status-wip">In progress</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="consulting">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#3a2a1a,#8a5a2a);">
+        <span>📋</span>
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Engineering Consulting</div>
+        <div class="project-title">Technical Due Diligence — [Client Project]</div>
+        <div class="project-desc">Placeholder for an upcoming engineering consulting engagement. Details to be added. This could include hardware architecture review, firmware audit, or systems integration assessment for a client.</div>
+        <div class="project-footer">
+          <span class="project-company">Client TBD</span>
+          <span class="project-status status-placeholder">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SECTION 3: VENTURE & STRATEGY ── -->
+<div class="port-section">
+  <div class="port-section-header">
+    <h2>Venture Analysis & Deep-Tech Evaluation</h2>
+    <span>Science-based startup assessment at CDL</span>
+  </div>
+  <div class="project-grid">
+
+    <div class="project-card" data-cat="venture">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a2a3a,#2a5a7a);">
+        <span>🔬</span>
+        <span class="thumb-label">CDL · UBC</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Venture Analysis · CleanTech</div>
+        <div class="project-title">Deep-Tech Startup Evaluation — CDL Climate Stream</div>
+        <div class="project-desc">Evaluated 20+ science-based and next-generation compute startups at the Creative Destruction Lab (UBC) for technology readiness, commercial viability, and application potential. Engaged directly with founders in structured technical interviews.</div>
+        <div class="project-footer">
+          <span class="project-company">Creative Destruction Lab · UBC · 2025</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="venture">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#2a1a3a,#6a3a8a);">
+        <span>📊</span>
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Market Analysis</div>
+        <div class="project-title">Expanded TAM Analysis — Ambient Communication</div>
+        <div class="project-desc">Placeholder for a published market analysis on ambient communication and battery-free IoT. Covers 10 expanded market verticals where energy efficiency is mission-critical and battery access is physically impossible.</div>
+        <div class="project-footer">
+          <span class="project-company">Independent research</span>
+          <span class="project-status status-placeholder">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="venture">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a3a2a,#3a8a5a);">
+        <span>💡</span>
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Entrepreneurial Finance · UBC Sauder</div>
+        <div class="project-title">MBA Capstone — [Project Title]</div>
+        <div class="project-desc">Placeholder for MBA capstone or applied project from UBC Sauder School of Business. Details to be added. Could cover a technology commercialisation case, financial modelling project, or strategic market entry analysis.</div>
+        <div class="project-footer">
+          <span class="project-company">UBC Sauder · 2026</span>
+          <span class="project-status status-placeholder">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SECTION 4: EDUCATION ── -->
+<div class="port-section">
+  <div class="port-section-header">
+    <h2>Education & Technical Instruction</h2>
+    <span>Teaching engineering and physics to students and professionals globally</span>
+  </div>
+  <div class="project-grid">
+
+    <div class="project-card" data-cat="education">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#3a2a1a,#c9850e);">
+        <span>🎓</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">University Instruction · Physics</div>
+        <div class="project-title">Physics Instruction — University Level</div>
+        <div class="project-desc">Taught physics at the university level, making complex concepts accessible to students from diverse backgrounds. Developed curriculum materials and adaptive teaching approaches tailored to different learning levels.</div>
+        <div class="project-footer">
+          <span class="project-company">University · Vancouver</span>
+          <span class="project-status status-done">Completed</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="education">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#1a3a3a,#2a8a8a);">
+        <span>💻</span>
+        <span class="placeholder-badge">Placeholder</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Online STEM Education · Global</div>
+        <div class="project-title">Engineering & Physics Tutoring — Superprof & Platforms</div>
+        <div class="project-desc">Teaching engineering, physics, and technical concepts to students and professionals across multiple online platforms including Superprof. Consistently recognised for making complex technical subjects simple, engaging, and actionable.</div>
+        <div class="project-footer">
+          <span class="project-company">Superprof · Multiple platforms · 2020–present</span>
+          <span class="project-status status-wip">Ongoing</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card" data-cat="education">
+      <div class="project-thumb" style="background: linear-gradient(135deg,#2a1a3a,#7a3a9a);">
+        <span>📚</span>
+        <span class="placeholder-badge">Coming soon</span>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Course / Workshop</div>
+        <div class="project-title">[Upcoming Course or Workshop]</div>
+        <div class="project-desc">Placeholder for a structured course or workshop. Could cover embedded systems fundamentals, technical communication for engineers, or an introduction to quantum computing for non-specialists.</div>
+        <div class="project-footer">
+          <span class="project-company">TBD</span>
+          <span class="project-status status-placeholder">Coming soon</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Sandeep Lokala</span>
+  <span>Vancouver, BC · lokalask@gmail.com</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="index.html">Home</a>
+    <a href="creative.html">Creative</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://linkedin.com/in/sandeeplokala" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  function filterCards(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      const cats = card.dataset.cat || '';
+      card.style.display = (cat === 'all' || cats.includes(cat)) ? 'flex' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Speaking — Sandeep Lokala</title>
+  <meta name="description" content="Public speaking, pitches, case competitions, and conference appearances — Sandeep Lokala." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1b1512; --navy-mid: #2c2218;
+      --muted: #a8937a; --bg: #f4ede0; --bg-card: #fdf8f1;
+      --text: #1b1512; --text-secondary: #6b5a45;
+      --border: rgba(26,20,14,0.12);
+      --accent: #b8895a; --accent-dark: #8a6338;
+      --accent-light: #ede0cc; --gold: #c9a55e; --gold-light: #f8f1e4;
+      --radius: 14px; --radius-sm: 9px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(244,237,224,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem; display: flex; justify-content: space-between; align-items: center; height: 60px;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--navy); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+    .nav-cta { font-size: 13px; font-weight: 500; background: var(--accent); color: #fff; padding: 8px 18px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--accent-dark); }
+
+    /* HERO */
+    .port-hero {
+      padding: 5rem 2.5rem 3rem; max-width: 860px; margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .port-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; }
+    .port-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+    .port-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,4vw,3.4rem); font-weight: 400; color: var(--navy); line-height: 1.15; margin-bottom: 1rem; }
+    .port-hero h1 em { font-style: italic; color: var(--accent); }
+    .port-hero p { font-size: 15px; color: var(--text-secondary); line-height: 1.8; max-width: 600px; }
+
+    /* SECTION */
+    .port-section { max-width: 860px; margin: 0 auto; padding: 0 2.5rem 2rem; }
+    .port-section-header { padding: 2rem 0 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem; display: flex; align-items: baseline; gap: 1rem; }
+    .port-section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 500; color: var(--navy); }
+    .port-section-header span { font-size: 12px; color: var(--muted); }
+
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem; }
+
+    .project-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 0;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+      text-decoration: none; color: inherit;
+    }
+    .project-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px rgba(184,137,90,0.12); }
+
+    .project-thumb {
+      width: 100%; aspect-ratio: 16/10;
+      position: relative; overflow: hidden; background: var(--navy);
+    }
+    .project-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; cursor: zoom-in; transition: transform 0.3s ease; }
+    .project-card:hover .project-thumb img { transform: scale(1.03); }
+
+    /* CAROUSEL — multiple photos scrolling in one pane */
+    .carousel { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+    .carousel::-webkit-scrollbar { display: none; }
+    .carousel img { flex: 0 0 100%; scroll-snap-align: start; }
+    .car-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 30px; height: 30px; border-radius: 50%; border: none;
+      background: rgba(253,248,241,0.85); color: var(--navy);
+      font-size: 16px; line-height: 1; cursor: pointer; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .car-arrow:hover { background: var(--accent); color: #fff; }
+    .car-prev { left: 8px; } .car-next { right: 8px; }
+    .car-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; }
+    .car-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(253,248,241,0.55); transition: background 0.2s; }
+    .car-dot.active { background: var(--accent); }
+
+    .project-body { padding: 1.1rem 1.2rem 1.2rem; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .project-tag { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-dark); font-weight: 500; }
+    .project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
+    .project-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+    .project-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 10px; border-top: 1px dashed var(--border); }
+    .project-company { font-size: 11.5px; color: var(--muted); }
+
+    /* VIDEO */
+    .video-card { margin-bottom: 1.75rem; }
+    .video-card video { width: 100%; aspect-ratio: 16/9; background: #000; display: block; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(20,15,10,0.92); align-items: center; justify-content: center; padding: 2rem;
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); object-fit: contain; }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      max-width: 1100px; margin: 2rem auto 0; font-size: 13px; color: var(--text-secondary);
+    }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--navy); }
+    footer a { color: var(--text-secondary); text-decoration: none; }
+    footer a:hover { color: var(--accent-dark); }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .port-hero { padding: 3rem 1.5rem 2rem; }
+      .port-section { padding: 0 1.5rem 1.5rem; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="text-decoration:none;">Sandeep Lokala</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#experience">Experience</a></li>
+    <li><a href="index.html#mentorship">Mentorship</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="speaking.html" class="active">Speaking</a></li>
+    <li><a href="creative.html">Creative</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="port-hero">
+  <div class="port-eyebrow">Public Speaking</div>
+  <h1>Pitches, panels, and <em>presentations</em>.</h1>
+  <p>From global case competition finals in Sydney to venture pitches, deep-tech evaluations, and tradeshow floors — a selection of moments presenting strategy, technology, and ventures to audiences of investors, executives, and students.</p>
+</div>
+
+<!-- FEATURED VIDEO -->
+<div class="port-section">
+  <div class="port-section-header">
+    <h2>Featured Talks</h2>
+    <span>Venture pitches on video</span>
+  </div>
+  <div class="project-card video-card">
+    <video controls preload="metadata">
+      <source src="assets/speaking/birch-biosciences-pitch.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="project-body">
+      <div class="project-tag">Venture Pitch · Video</div>
+      <div class="project-title">Birch Biosciences — Venture Pitch</div>
+      <div class="project-desc">Pitching Birch Biosciences' enzymatic plastics-recycling venture — the science behind low-energy PET depolymerization, the unit economics of producing 100% recycled resin, and the investment case for circular plastics at scale.</div>
+      <div class="project-footer">
+        <span class="project-company">Creative Destruction Lab · Climate Stream</span>
+      </div>
+    </div>
+  </div>
+  <div class="project-card video-card">
+    <video controls preload="metadata">
+      <source src="assets/speaking/entoq-presentation.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="project-body">
+      <div class="project-tag">Startup Pitch · Video</div>
+      <div class="project-title">Entoq Environmental Technologies — Venture Presentation</div>
+      <div class="project-desc">Presenting Entoq's waste-to-resource recovery venture — the municipal solid waste opportunity, the bio-mechanical process, dual revenue model, and the North American go-to-market plan.</div>
+      <div class="project-footer">
+        <span class="project-company">Entoq · Vancouver, BC</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY -->
+<div class="port-section">
+  <div class="port-section-header">
+    <h2>On Stage</h2>
+    <span>Case competitions, pitches & conferences</span>
+  </div>
+  <div class="project-grid">
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="assets/speaking/unsw-case-comp-1.jpg" alt="Presenting Treasury Wine Estates case at UNSW Sydney" loading="lazy" />
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Global Case Competition</div>
+        <div class="project-title">Treasury Wine Estates Strategy Case — UNSW Sydney</div>
+        <div class="project-desc">Presenting a market-entry and growth strategy for Treasury Wine Estates with my MBA team at UNSW Sydney as part of a global case competition.</div>
+        <div class="project-footer"><span class="project-company">UNSW · Sydney, Australia</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="assets/speaking/unsw-challenges.jpg" alt="Presenting industry challenges analysis on stage" loading="lazy" />
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Strategy Presentation</div>
+        <div class="project-title">Industry Challenges & Market Analysis</div>
+        <div class="project-desc">Walking the judging panel through climate, supply chain, regulatory, and demand-forecasting challenges shaping the client's industry.</div>
+        <div class="project-footer"><span class="project-company">Case Competition Finals</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="assets/speaking/chile-consulting.jpg" alt="Presenting consulting project for Chile, South America" loading="lazy" />
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Consulting Engagement</div>
+        <div class="project-title">Consulting Project in Chile, South America</div>
+        <div class="project-desc">Presenting findings from a consulting engagement in Chile — mapping the end-to-end customer journey from need identification through quote comparison, inspection, and approval.</div>
+        <div class="project-footer"><span class="project-company">Chile · South America</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="assets/speaking/cdl-plastics-pitch.jpg" alt="Presenting enzymatic plastics recycling venture analysis" loading="lazy" />
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Deep-Tech Venture Analysis</div>
+        <div class="project-title">Enzymatic Plastics Recycling — Venture Evaluation</div>
+        <div class="project-desc">Presenting an investment evaluation of an enzymatic PET-recycling venture — covering the science, unit economics, and the case for recycled resin at scale.</div>
+        <div class="project-footer"><span class="project-company">Creative Destruction Lab · Climate Stream</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <img src="assets/speaking/sauder-presentation.jpg" alt="Presenting student venture programming" loading="lazy" />
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Student Leadership</div>
+        <div class="project-title">Empowering Students to Build Ventures</div>
+        <div class="project-desc">Presenting programming designed to help students transform ideas into ventures — workshops, hackathons, pitch sessions, and networking.</div>
+        <div class="project-footer"><span class="project-company">UBC Sauder · Data & AI Club</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <div class="carousel" id="car-team">
+          <img src="assets/speaking/unsw-case-comp-2.jpg" alt="Team final presentation at UNSW case competition" loading="lazy" />
+          <img src="assets/speaking/venture-presentation.jpg" alt="Co-presenting venture and technology analysis" loading="lazy" />
+        </div>
+        <button class="car-arrow car-prev" onclick="carMove('car-team',-1)" aria-label="Previous photo">&#8249;</button>
+        <button class="car-arrow car-next" onclick="carMove('car-team',1)" aria-label="Next photo">&#8250;</button>
+        <div class="car-dots" data-for="car-team"><span class="car-dot active"></span><span class="car-dot"></span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Global Case Competition</div>
+        <div class="project-title">Team Final Presentation — UNSW Sydney</div>
+        <div class="project-desc">Final team presentation moments at the UNSW global case competition — delivering strategy recommendations and fielding judge Q&A alongside co-presenters.</div>
+        <div class="project-footer"><span class="project-company">UNSW · Sydney, Australia</span></div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        <div class="carousel" id="car-websummit">
+          <img src="assets/speaking/conference-booth-1.jpg" alt="Engaging attendees at the Web Summit tradeshow booth" loading="lazy" />
+          <img src="assets/speaking/conference-booth-2.jpg" alt="Investor and partner conversations at Web Summit" loading="lazy" />
+        </div>
+        <button class="car-arrow car-prev" onclick="carMove('car-websummit',-1)" aria-label="Previous photo">&#8249;</button>
+        <button class="car-arrow car-next" onclick="carMove('car-websummit',1)" aria-label="Next photo">&#8250;</button>
+        <div class="car-dots" data-for="car-websummit"><span class="car-dot active"></span><span class="car-dot"></span></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tag">Tech Conference</div>
+        <div class="project-title">Web Summit Tradeshow</div>
+        <div class="project-desc">Representing the venture on the Web Summit tradeshow floor — demoing the product story and holding one-on-one conversations with investors, partners, and fellow founders.</div>
+        <div class="project-footer"><span class="project-company">Web Summit · Vancouver</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Sandeep Lokala</span>
+  <span>Vancouver, BC · lokalask@gmail.com</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="creative.html">Creative</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://linkedin.com/in/sandeeplokala" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')"><img id="lightboxImg" src="" alt="" /></div>
+
+<script>
+  // Carousel controls
+  function carMove(id, dir) {
+    const car = document.getElementById(id);
+    const w = car.clientWidth;
+    const idx = Math.round(car.scrollLeft / w) + dir;
+    const max = car.children.length - 1;
+    const next = Math.max(0, Math.min(max, idx));
+    car.scrollTo({ left: next * w, behavior: 'smooth' });
+  }
+  // Dot sync on scroll
+  document.querySelectorAll('.carousel').forEach(car => {
+    car.addEventListener('scroll', () => {
+      const idx = Math.round(car.scrollLeft / car.clientWidth);
+      const dots = document.querySelector('.car-dots[data-for="' + car.id + '"]');
+      if (dots) [...dots.children].forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, { passive: true });
+  });
+  // Lightbox on image click (works for single images and carousel slides)
+  document.querySelectorAll('.project-thumb img').forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
